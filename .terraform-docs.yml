@@ -241,7 +241,7 @@ sort:
 
 # BEGIN DOTGIT-SYNC BLOCK EXCLUDED TF_DOCS_RECURSIVE
 recursive:
-  enabled: true
+  enabled: false
 # END DOTGIT-SYNC BLOCK EXCLUDED TF_DOCS_RECURSIVE
 
 settings:
