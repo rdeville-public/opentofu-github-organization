@@ -1,6 +1,18 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.2.3 (2024-09-09)
+
+### 🩹 Patch
+
+  * 🐛 Add variable use in resources deployment (!7) by Romain Deville ([`b6b8aff`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/b6b8affcb5891dfc985ed41adbe809bc47c79fad))
+  * 🐛 Add variable use in resources deployment by Romain Deville ([`0913b9d`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/0913b9d80abd9c0c4a583bec8739a24f4b87746b)) 🔏
+
+### 🔊 Others
+
+  * 📝 Fix typoe in README (!6) by Romain Deville ([`80c86a3`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/80c86a36c876deb572a13e2e19ef7744f294d428))
+  * 📝 Fix typoe in README by Romain Deville ([`9ef2d12`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/9ef2d1244a0f5b804dc41a8e4b491d1540b2a403)) 🔏
+
 ## v0.2.2 (2024-09-09)
 
 ### 🩹 Patch
@@ -12,6 +24,7 @@
 
   * 📝 Move examples from docs to README by Romain Deville ([`98ffc33`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/98ffc332ba5b5786295c9b9ea01f7ba6bc0b67e1)) 🔏
   * 📝 Update README from tf-docs by Romain Deville ([`4a2166a`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/4a2166af08111be430e8609a0c6a87d01b18fb3f)) 🔏
+  * 🔖 v0.2.2 (NO-CI) by Python Semantic Release [bot] ([`6ba81de`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/6ba81deab21430c3eb66fb0508185863f0446b43))
 
 ## v0.2.1 (2024-09-09)
 
@@ -54,7 +67,6 @@
   * 🔧 Add markdownlint config from DGS template by Romain Deville ([`811b44a`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/811b44a312c1a0df77519f4f14962cd1f778b93a)) 🔏
   * 🔧 Add commitlint config from DGS template by Romain Deville ([`a7b9438`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/a7b94386631e97e9ac41bef4c00f5cf736d94dcd)) 🔏
   * 🔧 Add cspell configuration from DGS template by Romain Deville ([`48d1bb8`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/48d1bb82b910779516b17e2ec44e275c767ad95f)) 🔏
-  * 🔧 Add editorconfig from DGS template by Romain Deville ([`02708ad`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/02708ad18c248767b1f77445ae2bca7a956265bb)) 🔏
 
 ### 🔊 Others
 
@@ -66,9 +78,7 @@
   * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`5aadfd9`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/5aadfd9ef4d4ec5a1d2ce6321af42e5b40ac74c3))
   * 🔨 Add .envrc from DGS template by Romain Deville ([`500b4f4`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/500b4f41173fdb06c7b6a4934c3f523857ce79cd)) 🔏
   * 🔨 Add devbox config from DGS template by Romain Deville ([`1af20bc`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/1af20bc0c1ba1ec1120c00f2cbeac1aed634e997)) 🔏
-  * 🔨 Add pre-commit configuration from DGS template by Romain Deville ([`7cc9c3a`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/7cc9c3a27db8fc0007f2a5c2867965b430703d50)) 🔏
   * 🙈 Add provider.tf to gitignore by Romain Deville ([`b875b5d`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/b875b5d01276b278292e1596ac4bfd7b17d909e7)) 🔏
-  * 🙈 Update gitignore from DGS by Romain Deville ([`949a967`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/949a967a9513026fcbc8357daba71050a419bb91)) 🔏
 
 ## v0.0.0 (2024-08-23)
 
