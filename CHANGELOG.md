@@ -1,6 +1,18 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.2.2 (2024-09-09)
+
+### 🩹 Patch
+
+  * ⚡️ Add support of new ruleset variables (!5) by Romain Deville ([`ecd15a4`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/ecd15a4a96b138a86833b786bb4f63af79138c92))
+  * ⚡️ Add support of rulesets var strict_required_status_check_policy by Romain Deville ([`9eb2596`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/9eb25960b94b79d78e7e6b59ae712daa2cc062e8)) 🔏
+
+### 🔊 Others
+
+  * 📝 Move examples from docs to README by Romain Deville ([`98ffc33`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/98ffc332ba5b5786295c9b9ea01f7ba6bc0b67e1)) 🔏
+  * 📝 Update README from tf-docs by Romain Deville ([`4a2166a`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/4a2166af08111be430e8609a0c6a87d01b18fb3f)) 🔏
+
 ## v0.2.1 (2024-09-09)
 
 ### 🩹 Patch
@@ -11,6 +23,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs by Romain Deville ([`e5ea847`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/e5ea8474c054c73e9f59e20b44ce7885ba71c368)) 🔏
+  * 🔖 v0.2.1 (NO-CI) by Python Semantic Release [bot] ([`90e80d9`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/90e80d99a94bbacb850abb1a26a51871a952bea2))
 
 ## v0.2.0 (2024-08-30)
 
@@ -50,8 +63,6 @@
   * 👷 Add Gitlab CI from DGS template by Romain Deville ([`fdc322e`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/fdc322e35961e01e3cfddcf6b79cdcd8dcb8085b)) 🔏
   * 📝 Add values examples for org settings by Romain Deville ([`d6e5d70`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/d6e5d705136199b79b470d5e3b3540f61b8a78a7)) 🔏
   * 📝 Update README with tf-docs by Romain Deville ([`281977e`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/281977e500ab5d3a14bd5f125f0fa0e35336550c)) 🔏
-  * 📝 Add CODE_OF_CONDUCT from DGS by Romain Deville ([`eea9293`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/eea92936fffd3e3006814d810821f9ef471c0446)) 🔏
-  * 📝 Update README from DGS by Romain Deville ([`1066979`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/10669793ce909db6f7ad48fdaa4cce044bb25091)) 🔏
   * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`5aadfd9`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/5aadfd9ef4d4ec5a1d2ce6321af42e5b40ac74c3))
   * 🔨 Add .envrc from DGS template by Romain Deville ([`500b4f4`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/500b4f41173fdb06c7b6a4934c3f523857ce79cd)) 🔏
   * 🔨 Add devbox config from DGS template by Romain Deville ([`1af20bc`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/1af20bc0c1ba1ec1120c00f2cbeac1aed634e997)) 🔏
