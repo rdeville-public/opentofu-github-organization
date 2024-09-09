@@ -40,6 +40,246 @@ OpenTofu modules allowing to manage github organization configuration.
 <!-- BEGIN DOTGIT-SYNC BLOCK EXCLUDED CUSTOM_README -->
 ## 🚀 Usage
 
+### Manage Orgnization with all defaults
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
+  settings_name          = "TF Test Organization"
+  settings_description   = "Fake Organization to test TF provisioning"
+}
+```
+
+### Manage Organization with all settings
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
+  settings_name          = "TF Test Organization"
+  settings_description   = "Fake Organization to test TF provisioning"
+
+  # Examples values
+  settings_company          = "My Company"
+  settings_blog             = "https://blog.mycompany.tld"
+  settings_email            = "contact+github-org@mycompany.tld"
+  settings_twitter_username = "@mycompany"
+  settings_location         = "Neverland"
+
+  # Defaults values
+  settings_has_organization_projects     = false
+  settings_has_repository_projects       = false
+  settings_default_repository_permission = "read"
+
+  settings_members_can_create_repositories          = false
+  settings_members_can_create_public_repositories   = false
+  settings_members_can_create_private_repositories  = false
+  settings_members_can_create_internal_repositories = false
+  settings_members_can_create_pages                 = false
+  settings_members_can_create_public_pages          = false
+  settings_members_can_create_private_pages         = false
+  settings_members_can_fork_private_repositories    = false
+
+  settings_web_commit_signoff_required                                  = true
+  settings_advanced_security_enabled_for_new_repositories               = false
+  settings_dependabot_alerts_enabled_for_new_repositories               = false
+  settings_dependabot_security_updates_enabled_for_new_repositories     = false
+  settings_dependency_graph_enabled_for_new_repositories                = false
+  settings_secret_scanning_enabled_for_new_repositories                 = false
+  settings_secret_scanning_push_protection_enabled_for_new_repositories = false
+}
+```
+
+### Manage Organization Branch Rulesets
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
+  settings_name          = "TF Test Organization"
+  settings_description   = "Fake Organization to test TF provisioning"
+
+  # Example values
+  ruleset = {
+    default-branch = {
+      target = "branch"
+      condition = {
+        ref_name = {
+          include = ["~DEFAULT_BRANCH"]
+          exclude = []
+        },
+        repository_name = {
+          include = ["~ALL"]
+          exclude = []
+        }
+      }
+      rules = {
+        creation = false
+        deletion = false
+        pull_request = {
+          required_approving_review_count = 1
+        }
+      }
+    }
+  }
+}
+```
+
+### Manage Organization Tag Rulesets
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
+  settings_name          = "TF Test Organization"
+  settings_description   = "Fake Organization to test TF provisioning"
+
+  # Example values
+  ruleset = {
+    release-tag = {
+      target = "tag"
+      condition = {
+        ref_name = {
+          include = ["~DEFAULT_BRANCH"]
+        },
+        repository_name = {
+          include = ["~ALL"]
+        }
+      }
+      rules = {
+        update   = false
+        deletion = false
+        pattern = {
+          operator = "regex"
+          pattern  = "v*"
+          name     = "Limit version 'v*' tag creation"
+        }
+      }
+    }
+  }
+}
+```
+
+### Manage Organization both Branch and Tags Rulesets
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
+  settings_name          = "TF Test Organization"
+  settings_description   = "Fake Organization to test TF provisioning"
+
+  # Example values
+ruleset = {
+  default-branch = {
+    target = "branch"
+    condition = {
+      ref_name = {
+        include = ["~DEFAULT_BRANCH"]
+      },
+      repository_name = {
+        include = ["~ALL"]
+      }
+    }
+    rules = {
+      creation = false
+      deletion = false
+      pull_request = {
+        required_approving_review_count = 1
+      }
+    }
+  }
+  any-other-branch = {
+    target = "branch"
+    condition = {
+      ref_name = {
+        include = ["~ALL"]
+      },
+      repository_name = {
+        include = ["~ALL"]
+      }
+    }
+    rules = {
+      pull_request = {
+        required_approving_review_count = 1
+      }
+      commit_author_email_pattern = {
+        name     = "Author should be @mycompany.tld"
+        operator = "ends_with"
+        pattern  = "@mycompany.tld"
+      }
+      committer_email_pattern = {
+        name     = "Commiter should be @mycompany.tld"
+        operator = "ends_with"
+        pattern  = "@mycompany.tld"
+      }
+    }
+  }
+  release-tag = {
+    target = "tag"
+    condition = {
+      ref_name = {
+        include = ["~DEFAULT_BRANCH"]
+      },
+      repository_name = {
+        include = ["~ALL"]
+      }
+    }
+    rules = {
+      update   = false
+      deletion = false
+      name_pattern = {
+        operator = "regex"
+        pattern  = "v*"
+        name     = "Limit version 'v*' tag creation"
+      }
+      commit_author_email_pattern = {
+        name     = "Author should be @mycompany.tld"
+        operator = "ends_with"
+        pattern  = "@mycompany.tld"
+      }
+      committer_email_pattern = {
+        name     = "Commiter should be @mycompany.tld"
+        operator = "ends_with"
+        pattern  = "@mycompany.tld"
+      }
+    }
+  }
+  any-other-tag = {
+    target = "tag"
+    condition = {
+      ref_name = {
+        include = ["~DEFAULT_BRANCH"]
+      },
+      repository_name = {
+        include = ["~ALL"]
+      }
+    }
+    rules = {
+      creation = false
+      update   = false
+      deletion = false
+      name_pattern = {
+        operator = "regex"
+        pattern  = "*"
+        name     = "Forbid any tag creation"
+      }
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
