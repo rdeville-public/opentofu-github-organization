@@ -151,6 +151,7 @@ resource "github_organization_ruleset" "this" {
           context        = required_status_checks.value.context
           integration_id = required_status_checks.value.integration_id
         }
+        strict_required_status_checks_policy = required_status_checks.value.strict_required_status_checks_policy
       }
     }
 
