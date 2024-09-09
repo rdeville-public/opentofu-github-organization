@@ -43,6 +43,10 @@ OpenTofu modules allowing to manage github organization configuration.
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
+<details><summary>Click to reveal</summary>
+
+### Table of Content
+
 * [Requirements](#requirements)
 * [Resources](#resources)
 * [Inputs](#inputs)
@@ -983,6 +987,8 @@ Object define ruleset apply to branch ONLY, with the following arguments:
   </div>
 </details>
 <!-- markdownlint-restore -->
+
+</details>
 
 <!-- END TF-DOCS -->
 <!-- END DOTGIT-SYNC BLOCK EXCLUDED CUSTOM_README -->
