@@ -264,6 +264,7 @@ variable "ruleset" {
           context        = string
           integration_id = optional(number)
         })
+        strict_required_status_checks_policy = optional(bool, true)
       }))
       required_workflows = optional(object({
         required_workflow = list(object({
@@ -447,10 +448,10 @@ variable "ruleset" {
         * `integration_id`: Number, optional, integration ID that this status
           check must originate from.
 
-      * `strict_required_status_checks_policy`: Boolean, optioanl, whether pull
+      * `strict_required_status_checks_policy`: Boolean, optional, whether pull
          requests targeting a matching branch must be tested with the latest code.
          This setting will not take effect unless at least one status check is enabled.
-         Defaults to false.
+         Defaults to `false`.
 
     * `required_workflows`: Object, optional, define which Actions workflows
       must pass before changes can be merged into a branch matching the rule.
