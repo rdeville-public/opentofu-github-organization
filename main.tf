@@ -188,3 +188,23 @@ resource "github_membership" "admins" {
   username = each.value
   role     = "admin"
 }
+
+# Manage action variables of organization
+resource "github_actions_organization_variable" "this" {
+  for_each = var.actions_variables
+
+  variable_name           = each.key
+  value                   = each.value.value
+  visibility              = each.value.visibility
+  selected_repository_ids = each.value.selected_repository_ids
+}
+
+# Manage action secrets of organization
+resource "github_actions_organization_secret" "this" {
+  for_each = var.actions_secrets
+
+  secret_name             = each.key
+  encrypted_value         = base64encode(each.value.value)
+  visibility              = each.value.visibility
+  selected_repository_ids = each.value.selected_repository_ids
+}
