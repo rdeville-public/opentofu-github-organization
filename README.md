@@ -304,6 +304,42 @@ module "repo" {
 }
 ```
 
+### Deploy Organization Actions Variables
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
+  settings_name          = "TF Test Organization"
+  settings_description   = "Fake Organization to test TF provisioning"
+
+  # Example values
+  actions_variable = {
+    FOO = "bar"
+  }
+}
+```
+
+### Deploy Organization Actions Secrets
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
+  settings_name          = "TF Test Organization"
+  settings_description   = "Fake Organization to test TF provisioning"
+
+  # Example values
+  actions_secrets = {
+    BAR = "EncryptedValueUsingGithubPubKey"
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -326,6 +362,10 @@ module "repo" {
 
 ### Resources
 
+* [resource.github_actions_organization_secret.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_secret)
+  > Manage action secrets of organization
+* [resource.github_actions_organization_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable)
+  > Manage action variables of organization
 * [resource.github_membership.admins](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/membership)
   > Add a users with role `admin` to the organization
 * [resource.github_membership.members](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/membership)
@@ -418,6 +458,8 @@ string
 * [ruleset](#ruleset)
 * [members](#members)
 * [admins](#admins)
+* [actions_variables](#actions_variables)
+* [actions_secrets](#actions_secrets)
 
 
 ##### `settings_company`
@@ -1301,6 +1343,80 @@ Set of string, usernames with role `maintainers` in the organization.
 
   ```hcl
   []
+  ```
+
+  </div>
+</details>
+
+##### `actions_variables`
+
+A map of object, where key is the name of the variable. Object support following
+attributes:
+
+* `value`: String, value of the variable.
+* `visibility`: String, configures the access that repositories have to the
+  organization variable. Must be one of `all`, `private`, `selected`.
+  `selected_repository_ids` is required if set to `selected`.
+* `selected_repository_ids`: List of string, array of repository ids that can
+  access the organization variable.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    value                   = string,
+    visibility              = string,
+    selected_repository_ids = optional(list(string), [])
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `actions_secrets`
+
+A map of object, where key is the name of the secret. Object support following
+attributes:
+
+* `value`: String, encrypted value of the secret using the GitHub public key.
+* `visibility`: String, configures the access that repositories have to the
+  organization secret. Must be one of `all`, `private`, `selected`.
+  `selected_repository_ids` is required if set to `selected`.
+* `selected_repository_ids`: List of string, array of repository ids that can
+  access the organization secret.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    value                   = string,
+    visibility              = string,
+    selected_repository_ids = optional(list(string), [])
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
   ```
 
   </div>

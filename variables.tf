@@ -471,6 +471,8 @@ variable "ruleset" {
   default = {}
 }
 
+# Organization membership variables
+# ------------------------------------------------------------------------
 variable "members" {
   type        = set(string)
   description = "Set of string, usernames with role `members` in the organization."
@@ -485,4 +487,54 @@ variable "admins" {
 
   nullable = false
   default  = []
+}
+
+# Organization Actions Variables variables
+# ------------------------------------------------------------------------
+variable "actions_variables" {
+  # Key is the name of the action variable
+  type = map(object({
+    value                   = string,
+    visibility              = string,
+    selected_repository_ids = optional(list(string), [])
+  }))
+  description = <<-EOM
+  A map of object, where key is the name of the variable. Object support following
+  attributes:
+
+  * `value`: String, value of the variable.
+  * `visibility`: String, configures the access that repositories have to the
+    organization variable. Must be one of `all`, `private`, `selected`.
+    `selected_repository_ids` is required if set to `selected`.
+  * `selected_repository_ids`: List of string, array of repository ids that can
+    access the organization variable.
+  EOM
+
+  nullable = false
+  default  = {}
+}
+
+# Organization Actions Secrets variables
+# ------------------------------------------------------------------------
+variable "actions_secrets" {
+  # Key is the name of the action variable
+  type = map(object({
+    value                   = string,
+    visibility              = string,
+    selected_repository_ids = optional(list(string), [])
+  }))
+  description = <<-EOM
+  A map of object, where key is the name of the secret. Object support following
+  attributes:
+
+  * `value`: String, encrypted value of the secret using the GitHub public key.
+  * `visibility`: String, configures the access that repositories have to the
+    organization secret. Must be one of `all`, `private`, `selected`.
+    `selected_repository_ids` is required if set to `selected`.
+  * `selected_repository_ids`: List of string, array of repository ids that can
+    access the organization secret.
+  EOM
+
+  nullable = false
+  default  = {}
 }
