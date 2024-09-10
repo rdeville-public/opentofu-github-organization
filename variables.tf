@@ -470,3 +470,19 @@ variable "ruleset" {
 
   default = {}
 }
+
+variable "members" {
+  type        = set(string)
+  description = "Set of string, usernames with role `members` in the organization."
+
+  nullable = false
+  default  = []
+}
+
+variable "admins" {
+  type        = set(string)
+  description = "Set of string, usernames with role `maintainers` in the organization."
+
+  nullable = false
+  default  = []
+}
