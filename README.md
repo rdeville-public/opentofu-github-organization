@@ -317,7 +317,10 @@ module "repo" {
 
   # Example values
   actions_variable = {
-    FOO = "bar"
+    FOO = {
+      value = "bar"
+      visibility = "private"
+    }
   }
 }
 ```
@@ -335,7 +338,10 @@ module "repo" {
 
   # Example values
   actions_secrets = {
-    BAR = "EncryptedValueUsingGithubPubKey"
+    BAR = {
+      value = "EncryptedValueUsingGithubPubKey"
+      visibility = "private"
+    }
   }
 }
 ```
