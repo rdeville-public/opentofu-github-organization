@@ -281,6 +281,29 @@ module "repo" {
 }
 ```
 
+### Manage membership of the organization
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
+  settings_name          = "TF Test Organization"
+  settings_description   = "Fake Organization to test TF provisioning"
+
+  # Example values
+  members = [
+    "a-user"
+    "another-user"
+  ]
+  admins = [
+    "an-admin"
+    "another-admin"
+  ]
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -303,6 +326,10 @@ module "repo" {
 
 ### Resources
 
+* [resource.github_membership.admins](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/membership)
+  > Add a users with role `admin` to the organization
+* [resource.github_membership.members](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/membership)
+  > Add a users with role `members` to the organization
 * [resource.github_organization_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_ruleset)
   > Manage ruletsets of an organization.
 * [resource.github_organization_settings.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_settings)
@@ -389,6 +416,8 @@ string
 * [settings_secret_scanning_enabled_for_new_repositories](#settings_secret_scanning_enabled_for_new_repositories)
 * [settings_secret_scanning_push_protection_enabled_for_new_repositories](#settings_secret_scanning_push_protection_enabled_for_new_repositories)
 * [ruleset](#ruleset)
+* [members](#members)
+* [admins](#admins)
 
 
 ##### `settings_company`
@@ -1224,6 +1253,54 @@ Object define ruleset apply to branch ONLY, with the following arguments:
 
   ```hcl
   {}
+  ```
+
+  </div>
+</details>
+
+##### `members`
+
+Set of string, usernames with role `members` in the organization.
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  set(string)
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  []
+  ```
+
+  </div>
+</details>
+
+##### `admins`
+
+Set of string, usernames with role `maintainers` in the organization.
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  set(string)
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  []
   ```
 
   </div>
