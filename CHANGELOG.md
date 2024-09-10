@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.4.0 (2024-09-10)
+
+### ✨ Minor
+
+  * ✨ Add Organization Variables and Secrest Deployment (!9) by Romain Deville ([`b759ad5`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/b759ad571524f34c08d4da1faf902510eda8bb25))
+  * ✨ Add Organization variables and secrets deployment by Romain Deville ([`b31edd7`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/b31edd7e4bd1dfe55bf0460fe13e7f1cb17a7daf)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add examples by Romain Deville ([`af0d39c`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/af0d39ca54ed2c47e6fa5865fa7ed9120fdc78f8)) 🔏
+
 ## v0.3.0 (2024-09-10)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add examples by Romain Deville ([`6d5c886`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/6d5c8869b75902c62c5dca9f425472c6a60bf8fe)) 🔏
+  * 🔖 v0.3.0 (NO-CI) by Python Semantic Release [bot] ([`be450e8`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/be450e87171fc0850ed58c19b688835ad869b40c))
 
 ## v0.2.3 (2024-09-09)
 
@@ -75,8 +87,6 @@
   * 📌 Add provider dependencies in versions.tf by Romain Deville ([`d3ed30e`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/d3ed30e56218e3b41689afd4d4e74dbfb44e8025)) 🔏
   * 🔧 Set recurstive to false in .terraform-docs by Romain Deville ([`51931a9`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/51931a94297dfb37c45870d1f1c25fdfb500102f)) 🔏
   * 🔧 Add terraform-docs config from DGS template by Romain Deville ([`195bbda`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/195bbdaecbbbad869e60229a0abc81fad8c2cebf)) 🔏
-  * 🔧 Add semantic release config from DGS template by Romain Deville ([`fe1f276`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/fe1f2765fa08106174e0a030164fa67e0cafffc8)) 🔏
-  * 🔧 Add markdownlint config from DGS template by Romain Deville ([`811b44a`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/811b44a312c1a0df77519f4f14962cd1f778b93a)) 🔏
 
 ### 🔊 Others
 
