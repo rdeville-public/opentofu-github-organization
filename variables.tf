@@ -584,7 +584,6 @@ variable "actions_secrets" {
   default  = {}
 }
 
-
 # Organization Webhook variables
 # ------------------------------------------------------------------------
 variable "webhooks" {
@@ -612,6 +611,31 @@ variable "webhooks" {
   * `insecure_ssl`: Boolean, optional, insecure SSL boolean toggle. Defaults to `false`.
   * `active`: Boolean, optional, Indicate if the webhook should receive events.
     Defaults to `true`.
+  EOM
+
+  nullable = false
+  default  = {}
+}
+
+# Organization Dependabot Secrets variables
+# ------------------------------------------------------------------------
+variable "dependabot_secrets" {
+  # Key is the name of the action variable
+  type = map(object({
+    value                   = string,
+    visibility              = string,
+    selected_repository_ids = optional(list(string), [])
+  }))
+  description = <<-EOM
+  A map of object, where key is the name of the secret. Object support following
+  attributes:
+
+  * `value`: String, encrypted value of the secret using the GitHub public key.
+  * `visibility`: String, configures the access that repositories have to the
+    organization secret. Must be one of `all`, `private`, `selected`.
+    `selected_repository_ids` is required if set to `selected`.
+  * `selected_repository_ids`: List of string, array of repository ids that can
+    access the organization secret.
   EOM
 
   nullable = false

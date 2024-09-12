@@ -201,7 +201,6 @@ resource "github_actions_organization_secret" "this" {
   selected_repository_ids = each.value.selected_repository_ids
 }
 
-
 # Manage repository webhook
 resource "github_organization_webhook" "this" {
   for_each = var.webhooks
@@ -215,4 +214,14 @@ resource "github_organization_webhook" "this" {
     insecure_ssl = each.value.insecure_ssl
     secret       = each.value.secret
   }
+}
+
+# Manage Github Dependabot secret within the organization
+resource "github_dependabot_organization_secret" "this" {
+  for_each = var.dependabot_secrets
+
+  secret_name             = each.key
+  encrypted_value         = base64encode(each.value.value)
+  visibility              = each.value.visibility
+  selected_repository_ids = each.value.selected_repository_ids
 }
