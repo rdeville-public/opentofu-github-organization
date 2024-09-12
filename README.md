@@ -387,6 +387,7 @@ module "repo" {
   source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
 
   # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
   settings_name         = "Test Fake Repo"
   settings_description  = "Test Fake Repository Managed With OpenTofu"
 
@@ -398,6 +399,27 @@ module "repo" {
       ]
       url = "https://my.app.tld/github/issues"
       content_type = "json"
+    }
+  }
+}
+```
+
+### Deploy Dependabot Actions Secrets
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
+  settings_name          = "TF Test Organization"
+  settings_description   = "Fake Organization to test TF provisioning"
+
+  # Example values
+  dependabot_secrets = {
+    BAZ = {
+      value = "EncryptedValueUsingGithubPubKey"
+      visibility = "selected"
     }
   }
 }
@@ -429,6 +451,8 @@ module "repo" {
   > Manage action secrets of organization
 * [resource.github_actions_organization_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable)
   > Manage action variables of organization
+* [resource.github_dependabot_organization_secret.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/dependabot_organization_secret)
+  > Manage Github Dependabot secret within the organization
 * [resource.github_membership.members](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/membership)
   > Manage a users membership of the organization
 * [resource.github_organization_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_ruleset)
@@ -523,6 +547,7 @@ string
 * [actions_variables](#actions_variables)
 * [actions_secrets](#actions_secrets)
 * [webhooks](#webhooks)
+* [dependabot_secrets](#dependabot_secrets)
 
 
 ##### `settings_company`
@@ -1544,6 +1569,43 @@ following attributes :
     secret       = optional(string)
     insecure_ssl = optional(bool, false)
     active       = optional(bool, true)
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `dependabot_secrets`
+
+A map of object, where key is the name of the secret. Object support following
+attributes:
+
+* `value`: String, encrypted value of the secret using the GitHub public key.
+* `visibility`: String, configures the access that repositories have to the
+  organization secret. Must be one of `all`, `private`, `selected`.
+  `selected_repository_ids` is required if set to `selected`.
+* `selected_repository_ids`: List of string, array of repository ids that can
+  access the organization secret.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    value                   = string,
+    visibility              = string,
+    selected_repository_ids = optional(list(string), [])
   }))
   ```
 
