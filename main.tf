@@ -173,20 +173,12 @@ resource "github_organization_ruleset" "this" {
   }
 }
 
-# Add a users with role `members` to the organization
+# Manage a users membership of the organization
 resource "github_membership" "members" {
-  for_each = local.members
+  for_each = local.membership
 
-  username = each.value
-  role     = "member"
-}
-
-# Add a users with role `admin` to the organization
-resource "github_membership" "admins" {
-  for_each = var.admins
-
-  username = each.value
-  role     = "admin"
+  username = each.key
+  role     = each.value
 }
 
 # Manage action variables of organization

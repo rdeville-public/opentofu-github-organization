@@ -473,20 +473,65 @@ variable "ruleset" {
 
 # Organization membership variables
 # ------------------------------------------------------------------------
-variable "members" {
-  type        = set(string)
-  description = "Set of string, usernames with role `members` in the organization."
+variable "membership" {
+  type = object({
+    members = optional(set(string), [])
+    admins  = optional(set(string), [])
+  })
+  description = <<-EOM
+  Object, with following attributes:
+
+  * `members`
+  * `admins`
+
+  Both attributes are set of string, optional, with default value to `[]`.
+
+  Above list is provided in order of access capacity, such that `members` have
+  less access than `admins`.
+
+  Elements of the sets are usernames with role corresponding to its attributes.
+
+  For instance:
+
+  ```hcl
+  membership = {
+    members = [
+      "foo",
+    ]
+    admins = [
+      "bar",
+    ]
+  }
+  ```
+
+  Provide `member` access to the user `foo` and `admin` access to the user `bar`.
+
+  If a user is set in both roles , then the higher access level is applied.
+
+  This can be usefull for instance when providing temporarly greater access
+  level to a user while minimizing the amount of action needed.
+
+  For instance:
+
+  ```hcl
+  users = {
+    members = [
+      "foo",
+      "bar",
+    ]
+    admin = [
+      "bar",
+      "baz",
+    ]
+  }
+  ```
+
+  Provide `members` access to the user `foo` and `admin` access to the users `bar`
+  and `baz`
+  EOM
 
   nullable = false
-  default  = []
-}
-
-variable "admins" {
-  type        = set(string)
-  description = "Set of string, usernames with role `maintainers` in the organization."
-
-  nullable = false
-  default  = []
+  default  = {}
 }
 
 # Organization Actions Variables variables
