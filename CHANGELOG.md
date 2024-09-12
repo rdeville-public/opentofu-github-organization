@@ -1,6 +1,13 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.5.1 (2024-09-12)
+
+### 🩹 Patch
+
+  * ✏️ Add empty outputs.tf to compliant to tf standard module structure (!12) by Romain Deville ([`93b7eb6`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/93b7eb63b929635ca1639b876ae197e876b4f38a))
+  * ✏️ Add empty outputs.tf to compliant to tf standard module structure by Romain Deville ([`c152711`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/c152711d27e34aff57a5b2847f05b5515f598388))
+
 ## v0.5.0 (2024-09-12)
 
 ### ✨ Minor
@@ -18,6 +25,7 @@
   * 📝 Update README from tf-docs and update example by Romain Deville ([`31f4725`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/31f472568376b6997ab7221ebd94299ed0496658)) 🔏
   * 📝 Fix README documentation (!10) by Romain Deville ([`f6a47d8`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/f6a47d8623a5445fb69f87b77301367b8497ed37))
   * 📝 Fix README documentation by Romain Deville ([`41069e8`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/41069e89a3b174b2cb6f9a6b013c8720e3ade49d)) 🔏
+  * 🔖 v0.5.0 (NO-CI) by Python Semantic Release [bot] ([`ce74080`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/ce7408070754fcced006dd6c88caed62f4e31241))
 
 ## v0.4.0 (2024-09-10)
 
@@ -99,19 +107,9 @@
 ### ✨ Minor
 
   * ✨ Add Organization Settings Management (!2) by Romain Deville ([`1e4a03a`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/1e4a03abe79f562ff376db412858756e759f0530))
-  * ✨ Add resources to manage organization settings by Romain Deville ([`a9197f6`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/a9197f6a5d7cb52cba44d0725ffef0813f8e6a1e)) 🔏
 
 ### 🔊 Others
 
   * 🎉 Initialization of the project with DGS files (!1) by Romain Deville ([`be66c52`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/be66c52e497a542eb9e886dea3618fbd61d502af))
-  * 👷 Update All Gitlab CI from DGS templates by Romain Deville ([`c209bfd`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/c209bfdf46bca7145bc8f1c1a357123d593b47d5)) 🔏
   * 📝 Add values examples for org settings by Romain Deville ([`d6e5d70`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/d6e5d705136199b79b470d5e3b3540f61b8a78a7)) 🔏
-  * 📝 Update README with tf-docs by Romain Deville ([`281977e`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/281977e500ab5d3a14bd5f125f0fa0e35336550c)) 🔏
   * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`5aadfd9`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/5aadfd9ef4d4ec5a1d2ce6321af42e5b40ac74c3))
-  * 🔨 Add .envrc from DGS template by Romain Deville ([`500b4f4`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/500b4f41173fdb06c7b6a4934c3f523857ce79cd)) 🔏
-
-## v0.0.0 (2024-08-23)
-
-### 🔊 Others
-
-  * 🎉 Initial Commit by Romain Deville ([`eee1616`](https://framagit.org/rdeville-public/terraform/module-github-organization/-/commit/eee16163f747a4006335b7d400272373727b6760)) 🔏
