@@ -200,3 +200,19 @@ resource "github_actions_organization_secret" "this" {
   visibility              = each.value.visibility
   selected_repository_ids = each.value.selected_repository_ids
 }
+
+
+# Manage repository webhook
+resource "github_organization_webhook" "this" {
+  for_each = var.webhooks
+
+  active = each.value.active
+  events = each.value.events
+
+  configuration {
+    url          = each.value.url
+    content_type = each.value.content_type
+    insecure_ssl = each.value.insecure_ssl
+    secret       = each.value.secret
+  }
+}
