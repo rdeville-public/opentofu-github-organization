@@ -473,20 +473,65 @@ variable "ruleset" {
 
 # Organization membership variables
 # ------------------------------------------------------------------------
-variable "members" {
-  type        = set(string)
-  description = "Set of string, usernames with role `members` in the organization."
+variable "membership" {
+  type = object({
+    members = optional(set(string), [])
+    admins  = optional(set(string), [])
+  })
+  description = <<-EOM
+  Object, with following attributes:
+
+  * `members`
+  * `admins`
+
+  Both attributes are set of string, optional, with default value to `[]`.
+
+  Above list is provided in order of access capacity, such that `members` have
+  less access than `admins`.
+
+  Elements of the sets are usernames with role corresponding to its attributes.
+
+  For instance:
+
+  ```hcl
+  membership = {
+    members = [
+      "foo",
+    ]
+    admins = [
+      "bar",
+    ]
+  }
+  ```
+
+  Provide `member` access to the user `foo` and `admin` access to the user `bar`.
+
+  If a user is set in both roles , then the higher access level is applied.
+
+  This can be usefull for instance when providing temporarly greater access
+  level to a user while minimizing the amount of action needed.
+
+  For instance:
+
+  ```hcl
+  users = {
+    members = [
+      "foo",
+      "bar",
+    ]
+    admin = [
+      "bar",
+      "baz",
+    ]
+  }
+  ```
+
+  Provide `members` access to the user `foo` and `admin` access to the users `bar`
+  and `baz`
+  EOM
 
   nullable = false
-  default  = []
-}
-
-variable "admins" {
-  type        = set(string)
-  description = "Set of string, usernames with role `maintainers` in the organization."
-
-  nullable = false
-  default  = []
+  default  = {}
 }
 
 # Organization Actions Variables variables
@@ -533,6 +578,40 @@ variable "actions_secrets" {
     `selected_repository_ids` is required if set to `selected`.
   * `selected_repository_ids`: List of string, array of repository ids that can
     access the organization secret.
+  EOM
+
+  nullable = false
+  default  = {}
+}
+
+
+# Organization Webhook variables
+# ------------------------------------------------------------------------
+variable "webhooks" {
+  # Key is just a human readabl identifier for the webhook
+  type = map(object({
+    events       = list(string)
+    url          = string
+    content_type = string
+    secret       = optional(string)
+    insecure_ssl = optional(bool, false)
+    active       = optional(bool, true)
+  }))
+  description = <<-EOM
+  Map of object, where key is just a human readable identifier. Object support
+  following attributes :
+
+  * `events`: List of string, a list of events which should trigger the webhook.
+    See a [list of available events](https://developer.github.com/v3/activity/events/types/).
+  * `url`: String, the URL of the webhook.
+  * `content_type`: String, the content type for the payload. Valid values are
+    either `form` or `json`.
+  * `secret`: String, optional, the shared secret for the webhook.
+    [See API documentation](https://developer.github.com/v3/activity/events/types/)
+    Default to `null`.
+  * `insecure_ssl`: Boolean, optional, insecure SSL boolean toggle. Defaults to `false`.
+  * `active`: Boolean, optional, Indicate if the webhook should receive events.
+    Defaults to `true`.
   EOM
 
   nullable = false

@@ -293,16 +293,50 @@ module "repo" {
   settings_description   = "Fake Organization to test TF provisioning"
 
   # Example values
-  members = [
-    "a-user"
-    "another-user"
-  ]
-  admins = [
-    "an-admin"
-    "another-admin"
-  ]
+  membership = {
+    members = [
+      "a-user"
+      "another-user"
+    ]
+    admins = [
+      "an-admin"
+      "another-admin"
+    ]
+  }
 }
 ```
+
+### Manage temporarly membership of the organization
+
+If a user is set in both roles , then the higher access level is applied.
+
+This can be usefull for instance when providing temporarly greater access
+level to a user while minimizing the amount of action needed.
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_billing_email = "billing+github@mycompany.tld"
+  settings_name          = "TF Test Organization"
+  settings_description   = "Fake Organization to test TF provisioning"
+
+  # Example values
+  membership = {
+    members = [
+      "a-user"
+      "another-user"
+    ]
+    admins = [
+      "a-user"
+      "an-admin"
+      "another-admin"
+    ]
+  }
+}
+```
+
 
 ### Deploy Organization Actions Variables
 
@@ -346,6 +380,29 @@ module "repo" {
 }
 ```
 
+### Manage webhook of the Organization
+
+```hcl
+module "repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-github-organization.git"
+
+  # Required variables
+  settings_name         = "Test Fake Repo"
+  settings_description  = "Test Fake Repository Managed With OpenTofu"
+
+  # Example values
+  webhooks = {
+    human-frendly-name = {
+      events = [
+        "issues"
+      ]
+      url = "https://my.app.tld/github/issues"
+      content_type = "json"
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -372,14 +429,14 @@ module "repo" {
   > Manage action secrets of organization
 * [resource.github_actions_organization_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable)
   > Manage action variables of organization
-* [resource.github_membership.admins](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/membership)
-  > Add a users with role `admin` to the organization
 * [resource.github_membership.members](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/membership)
-  > Add a users with role `members` to the organization
+  > Manage a users membership of the organization
 * [resource.github_organization_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_ruleset)
   > Manage ruletsets of an organization.
 * [resource.github_organization_settings.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_settings)
   > Manage settings of an organization.
+* [resource.github_organization_webhook.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_webhook)
+  > Manage repository webhook
 
 <!-- markdownlint-capture -->
 ### Inputs
@@ -462,10 +519,10 @@ string
 * [settings_secret_scanning_enabled_for_new_repositories](#settings_secret_scanning_enabled_for_new_repositories)
 * [settings_secret_scanning_push_protection_enabled_for_new_repositories](#settings_secret_scanning_push_protection_enabled_for_new_repositories)
 * [ruleset](#ruleset)
-* [members](#members)
-* [admins](#admins)
+* [membership](#membership)
 * [actions_variables](#actions_variables)
 * [actions_secrets](#actions_secrets)
+* [webhooks](#webhooks)
 
 
 ##### `settings_company`
@@ -1306,9 +1363,58 @@ Object define ruleset apply to branch ONLY, with the following arguments:
   </div>
 </details>
 
-##### `members`
+##### `membership`
 
-Set of string, usernames with role `members` in the organization.
+Object, with following attributes:
+
+* `members`
+* `admins`
+
+Both attributes are set of string, optional, with default value to `[]`.
+
+Above list is provided in order of access capacity, such that `members` have
+less access than `admins`.
+
+Elements of the sets are usernames with role corresponding to its attributes.
+
+For instance:
+
+```hcl
+membership = {
+  members = [
+    "foo",
+  ]
+  admins = [
+    "bar",
+  ]
+}
+```
+
+Provide `member` access to the user `foo` and `admin` access to the user `bar`.
+
+If a user is set in both roles , then the higher access level is applied.
+
+This can be usefull for instance when providing temporarly greater access
+level to a user while minimizing the amount of action needed.
+
+For instance:
+
+```hcl
+users = {
+  members = [
+    "foo",
+    "bar",
+  ]
+  admin = [
+    "bar",
+    "baz",
+  ]
+}
+```
+
+Provide `members` access to the user `foo` and `admin` access to the users `bar`
+and `baz`
+
 <details style="width: 100%;display: inline-block">
   <summary>Type & Default</summary>
   <div style="height: 1em"></div>
@@ -1316,7 +1422,10 @@ Set of string, usernames with role `members` in the organization.
   <p style="border-bottom: 1px solid #333333;">Type</p>
 
   ```hcl
-  set(string)
+  object({
+    members = optional(set(string), [])
+    admins  = optional(set(string), [])
+  })
   ```
 
   </div>
@@ -1324,31 +1433,7 @@ Set of string, usernames with role `members` in the organization.
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  []
-  ```
-
-  </div>
-</details>
-
-##### `admins`
-
-Set of string, usernames with role `maintainers` in the organization.
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  set(string)
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  []
+  {}
   ```
 
   </div>
@@ -1414,6 +1499,51 @@ attributes:
     value                   = string,
     visibility              = string,
     selected_repository_ids = optional(list(string), [])
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `webhooks`
+
+Map of object, where key is just a human readable identifier. Object support
+following attributes :
+
+* `events`: List of string, a list of events which should trigger the webhook.
+  See a [list of available events](https://developer.github.com/v3/activity/events/types/).
+* `url`: String, the URL of the webhook.
+* `content_type`: String, the content type for the payload. Valid values are
+  either `form` or `json`.
+* `secret`: String, optional, the shared secret for the webhook.
+  [See API documentation](https://developer.github.com/v3/activity/events/types/)
+  Default to `null`.
+* `insecure_ssl`: Boolean, optional, insecure SSL boolean toggle. Defaults to `false`.
+* `active`: Boolean, optional, Indicate if the webhook should receive events.
+  Defaults to `true`.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    events       = list(string)
+    url          = string
+    content_type = string
+    secret       = optional(string)
+    insecure_ssl = optional(bool, false)
+    active       = optional(bool, true)
   }))
   ```
 

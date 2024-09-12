@@ -173,20 +173,12 @@ resource "github_organization_ruleset" "this" {
   }
 }
 
-# Add a users with role `members` to the organization
+# Manage a users membership of the organization
 resource "github_membership" "members" {
-  for_each = local.members
+  for_each = local.membership
 
-  username = each.value
-  role     = "member"
-}
-
-# Add a users with role `admin` to the organization
-resource "github_membership" "admins" {
-  for_each = var.admins
-
-  username = each.value
-  role     = "admin"
+  username = each.key
+  role     = each.value
 }
 
 # Manage action variables of organization
@@ -207,4 +199,20 @@ resource "github_actions_organization_secret" "this" {
   encrypted_value         = base64encode(each.value.value)
   visibility              = each.value.visibility
   selected_repository_ids = each.value.selected_repository_ids
+}
+
+
+# Manage repository webhook
+resource "github_organization_webhook" "this" {
+  for_each = var.webhooks
+
+  active = each.value.active
+  events = each.value.events
+
+  configuration {
+    url          = each.value.url
+    content_type = each.value.content_type
+    insecure_ssl = each.value.insecure_ssl
+    secret       = each.value.secret
+  }
 }
