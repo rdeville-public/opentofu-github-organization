@@ -147,7 +147,7 @@ variable "settings_web_commit_signoff_required" {
   description = "Whether or not commit signatures are required for commits to the organization."
 
   nullable = false
-  default  = true
+  default  = false
 }
 
 variable "settings_advanced_security_enabled_for_new_repositories" {
