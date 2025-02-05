@@ -443,24 +443,24 @@ module "repo" {
 
 * [opentofu](https://opentofu.org/docs/):
   `>= 1.8, < 2.0`
-* [github](https://registry.terraform.io/providers/opentofu/github/):
+* [github](https://search.opentofu.org/provider/integrations/github/):
   `~>6.2`
 
 ### Resources
 
-* [resource.github_actions_organization_secret.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/actions_organization_secret)
+* [resource.github_actions_organization_secret.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_secret)
   > Manage action secrets of organization
-* [resource.github_actions_organization_variable.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/actions_organization_variable)
+* [resource.github_actions_organization_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable)
   > Manage action variables of organization
-* [resource.github_dependabot_organization_secret.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/dependabot_organization_secret)
+* [resource.github_dependabot_organization_secret.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/dependabot_organization_secret)
   > Manage Github Dependabot secret within the organization
-* [resource.github_membership.members](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/membership)
+* [resource.github_membership.members](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/membership)
   > Manage a users membership of the organization
-* [resource.github_organization_ruleset.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/organization_ruleset)
+* [resource.github_organization_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_ruleset)
   > Manage ruletsets of an organization.
-* [resource.github_organization_settings.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/organization_settings)
+* [resource.github_organization_settings.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_settings)
   > Manage settings of an organization.
-* [resource.github_organization_webhook.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/organization_webhook)
+* [resource.github_organization_webhook.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_webhook)
   > Manage repository webhook
 
 <!-- markdownlint-capture -->
@@ -1657,4 +1657,6 @@ This project is under following licenses (**OR**) :
 
 [main_license]: https://framagit.org/rdeville-public/opentofu/github-organization/blob/main/LICENSE
 [beerware_license]: https://framagit.org/rdeville-public/opentofu/github-organization/blob/main/LICENSE.BEERWARE
+
+
 <!-- END DOTGIT-SYNC BLOCK MANAGED -->
