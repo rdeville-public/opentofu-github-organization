@@ -1,11 +1,12 @@
 <!-- BEGIN DOTGIT-SYNC BLOCK MANAGED -->
+<!-- markdownlint-disable -->
 # 👋 Welcome to OpenTofu Module Github Organization
 
 <center>
 
 > ⚠️ IMPORTANT !
 >
-> Main repo is on [framagit.org](https://framagit.org/rdeville-public/opentofu/github-groups).
+> Main repo is on [framagit.org](https://framagit.org/rdeville-public/opentofu/github-organization).
 >
 > On other online git platforms, they are just mirror of the main repo.
 >
@@ -25,12 +26,12 @@
 
 </center>
 
-[build_badge]: https://framagit.org/rdeville-public/opentofu/github-groups/badges/main/pipeline.svg
-[build_badge_url]: https://framagit.org/rdeville-public/opentofu/github-groups/-/commits/main
-[release_badge]: https://framagit.org/rdeville-public/opentofu/github-groups/-/badges/release.svg
-[release_badge_url]: https://framagit.org/rdeville-public/opentofu/github-groups/-/releases/
+[build_badge]: https://framagit.org/rdeville-public/opentofu/github-organization/badges/main/pipeline.svg
+[build_badge_url]: https://framagit.org/rdeville-public/opentofu/github-organization/-/commits/main
+[release_badge]: https://framagit.org/rdeville-public/opentofu/github-organization/-/badges/release.svg
+[release_badge_url]: https://framagit.org/rdeville-public/opentofu/github-organization/-/releases/
 [license_badge]: https://img.shields.io/badge/Licenses-MIT%20OR%20BEERWARE-blue
-[license_url]: https://framagit.org/rdeville-public/opentofu/github-groups/blob/main/LICENSE
+[license_url]: https://framagit.org/rdeville-public/opentofu/github-organization/blob/main/LICENSE
 [changelog_badge]: https://img.shields.io/badge/Changelog-Python%20Semantic%20Release-yellow
 [changelog_badge_url]: https://github.com/python-semantic-release/python-semantic-release
 
@@ -442,24 +443,24 @@ module "repo" {
 
 * [opentofu](https://opentofu.org/docs/):
   `>= 1.8, < 2.0`
-* [github](https://registry.terraform.io/providers/opentofu/github/):
+* [github](https://search.opentofu.org/provider/integrations/github/):
   `~>6.2`
 
 ### Resources
 
-* [resource.github_actions_organization_secret.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/actions_organization_secret)
+* [resource.github_actions_organization_secret.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_secret)
   > Manage action secrets of organization
-* [resource.github_actions_organization_variable.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/actions_organization_variable)
+* [resource.github_actions_organization_variable.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable)
   > Manage action variables of organization
-* [resource.github_dependabot_organization_secret.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/dependabot_organization_secret)
+* [resource.github_dependabot_organization_secret.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/dependabot_organization_secret)
   > Manage Github Dependabot secret within the organization
-* [resource.github_membership.members](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/membership)
+* [resource.github_membership.members](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/membership)
   > Manage a users membership of the organization
-* [resource.github_organization_ruleset.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/organization_ruleset)
+* [resource.github_organization_ruleset.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_ruleset)
   > Manage ruletsets of an organization.
-* [resource.github_organization_settings.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/organization_settings)
+* [resource.github_organization_settings.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_settings)
   > Manage settings of an organization.
-* [resource.github_organization_webhook.this](https://registry.terraform.io/providers/opentofu/github/latest/docs/resources/organization_webhook)
+* [resource.github_organization_webhook.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_webhook)
   > Manage repository webhook
 
 <!-- markdownlint-capture -->
@@ -1633,8 +1634,8 @@ Feel free to check [issues page][issues_pages].
 
 You can also take a look at the [CONTRIBUTING.md][contributing].
 
-[issues_pages]: https://framagit.org/rdeville-public/opentofu/github-groups/-/issues
-[contributing]: https://framagit.org/rdeville-public/opentofu/github-groups/blob/main/CONTRIBUTING.md
+[issues_pages]: https://framagit.org/rdeville-public/opentofu/github-organization/-/issues
+[contributing]: https://framagit.org/rdeville-public/opentofu/github-organization/blob/main/CONTRIBUTING.md
 
 ## 👤 Maintainers
 
@@ -1646,13 +1647,16 @@ You can also take a look at the [CONTRIBUTING.md][contributing].
 
 ## 📝 License
 
-Copyright © 2024 [Romain Deville](code@romaindeville.fr)
+Copyright © 2024 - 2025
+ * [Romain Deville \<code@romaindeville.fr\>](code@romaindeville.fr)
 
 This project is under following licenses (**OR**) :
 
 * [MIT][main_license]
 * [BEERWARE][beerware_license]
 
-[main_license]: https://framagit.org/rdeville-public/opentofu/github-groups/blob/main/LICENSE
-[beerware_license]: https://framagit.org/rdeville-public/opentofu/github-groups/blob/main/LICENSE.BEERWARE
+[main_license]: https://framagit.org/rdeville-public/opentofu/github-organization/blob/main/LICENSE
+[beerware_license]: https://framagit.org/rdeville-public/opentofu/github-organization/blob/main/LICENSE.BEERWARE
+
+
 <!-- END DOTGIT-SYNC BLOCK MANAGED -->
